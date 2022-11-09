@@ -23,7 +23,7 @@ files <- file.path(dir, samples_daphnia$Sample_Dir, "quant.sf")
 
 names(files) <- samples_daphnia$Sample_Dir
 
-tx2gene <- read_csv(choose.dir(caption = "Select tx file"))
+tx2gene <- read_csv(choose.files(caption = "Select tx file"))
 txi <- tximport(files, type="salmon", tx2gene=tx2gene)
 
 ddsTxi <- DESeqDataSetFromTximport(txi,
