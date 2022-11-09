@@ -7,9 +7,10 @@ clone_list <- c("AroMoose", "LK16", "PA42", "POVI4", "SW4")
 stage1 <- "LA"
 stage2 <- "EA"
 
+dir <- chooose.dir(caption = "Select sample directory")  # select path to sample folder
+
 for (clone in clone_list) {
 
-dir <- "E:/School Stuff/Lab Documents/RNA_Seq_Analysis/Refined Analysis/Salmon_Quant_Full_Real_Name"
 sample_names <- list.files(dir)
 
 samples_daphnia <- data.frame("Sample_Dir" = c(sample_names))
@@ -22,7 +23,7 @@ files <- file.path(dir, samples_daphnia$Sample_Dir, "quant.sf")
 
 names(files) <- samples_daphnia$Sample_Dir
 
-tx2gene <- read_csv("E:/School Stuff/Lab Documents/RNA_Seq_Analysis/Refined Analysis/Refined_Analysis/tx_file.cvs")
+tx2gene <- read_csv(choose.dir(caption = "Select tx file"))
 txi <- tximport(files, type="salmon", tx2gene=tx2gene)
 
 ddsTxi <- DESeqDataSetFromTximport(txi,
